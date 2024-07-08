@@ -15,6 +15,7 @@ import formSchemaZod from "@/app/auth/form-schema/form-schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { UserCreate } from "@/app/_actions/create-user";
 
 const formAuthCreate = () => {
   const formSchema = formSchemaZod;
@@ -23,7 +24,13 @@ const formAuthCreate = () => {
   });
 
   const formSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    if (!values) return;
+
+    try {
+      await UserCreate(values);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

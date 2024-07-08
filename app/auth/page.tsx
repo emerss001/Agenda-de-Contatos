@@ -1,3 +1,5 @@
+"use server";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,12 +24,12 @@ const Auth = () => {
       </TabsList>
       <TabsContent value="login">
         <Card>
-          <FormAuthCreate />
+          <FormAuthLogin />
         </Card>
       </TabsContent>
       <TabsContent value="create">
         <Card>
-          <FormAuthLogin />
+          <FormAuthCreate />
         </Card>
       </TabsContent>
     </Tabs>
