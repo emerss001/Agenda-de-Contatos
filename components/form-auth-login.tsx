@@ -16,15 +16,29 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import formSchemaZod from "@/app/auth/form-schema/form-schema";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const FormAuthLogin = () => {
+  const router = useRouter();
   const formSchema = formSchemaZod;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   const formSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    const result = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      console.log(result);
+      return;
+    }
+
+    router.replace("/");
   };
 
   return (
