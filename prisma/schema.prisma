@@ -13,10 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id       String @id @default(uuid())
+  name     String @unique
+  password String
+}
+
 model Contatct {
-  id String @id @default(uuid())
-  name String
-  surname String
+  id        String @id @default(uuid())
+  name      String
+  surname   String
   telephone String @unique
-  email String @unique
+  email     String @unique
 }
