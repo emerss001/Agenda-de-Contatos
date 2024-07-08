@@ -10,6 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import FormAuth from "@/components/form-auth";
 
 const Auth = () => {
   return (
@@ -20,26 +21,7 @@ const Auth = () => {
       </TabsList>
       <TabsContent value="login">
         <Card>
-          <CardHeader>
-            <CardTitle>Access your account</CardTitle>
-            <CardDescription>
-              To log in, enter your registered email and password.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" placeholder="exemple@gmail.com" type="email" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" placeholder="********" type="password" />
-            </div>
-          </CardContent>
-          <CardFooter className="gap-4">
-            <Button>Login</Button>
-            <Button variant="destructive">Cancel</Button>
-          </CardFooter>
+          <FormAuth />
         </Card>
       </TabsContent>
       <TabsContent value="create">

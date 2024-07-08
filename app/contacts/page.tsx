@@ -1,12 +1,6 @@
 "use server";
 
 import FormContact from "@/components/form-contact";
-import { Toaster } from "@/components/ui/sonner";
-import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
-import { redirect } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
 
 const createContact = () => {
   return (
