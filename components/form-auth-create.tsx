@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { UserCreate } from "@/app/_actions/create-user";
 
-const formAuthCreate = () => {
+const FormAuthCreate = () => {
   const formSchema = formSchemaZod;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -92,4 +92,4 @@ const formAuthCreate = () => {
   );
 };
 
-export default formAuthCreate;
+export default FormAuthCreate;

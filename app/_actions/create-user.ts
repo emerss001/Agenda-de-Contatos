@@ -1,11 +1,10 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { prisma } from "../_lib/prisma";
 
-export const UserCreate = async (data: Prisma.UsersCreateInput) => {
-  console.log(data);
-  await prisma.users.create({ data });
+export const UserCreate = async (data: Prisma.UserCreateInput) => {
+  await prisma.user.create({ data });
   revalidatePath("/");
 };

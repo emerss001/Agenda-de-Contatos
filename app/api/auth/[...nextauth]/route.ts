@@ -1,36 +1,6 @@
-import { prisma } from "@/lib/prisma";
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import { authOptions } from "@/app/_lib/auth";
 
-const nextAuthOptions: NextAuthOptions = {
-  providers: [
-    CredentialsProvider({
-      name: "credentials",
-      credentials: {
-        email: { label: "email", type: "email" },
-        password: { label: "password", type: "password" },
-      },
+const handler = NextAuth(authOptions);
 
-      async authorize(credentials, req) {
-        const response = await prisma.users.findUnique({
-          where: {
-            email: credentials?.email,
-            password: credentials?.password,
-          },
-        });
-
-        console.log(response);
-        if (response) return response;
-        return null;
-      },
-    }),
-  ],
-
-  pages: {
-    signIn: "/auth",
-  },
-};
-
-const handler = NextAuth(nextAuthOptions);
-
-export { handler as GET, handler as POST, nextAuthOptions };
+export { handler as GET, handler as POST };
